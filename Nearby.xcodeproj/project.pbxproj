@@ -54,14 +54,54 @@
 		41EE295B1D0B0F8B0009E3BA /* Nearby */ = {
 			isa = PBXGroup;
 			children = (
-				41EE295C1D0B0F8B0009E3BA /* AppDelegate.swift */,
-				41EE295E1D0B0F8B0009E3BA /* ViewController.swift */,
-				41EE29601D0B0F8B0009E3BA /* Main.storyboard */,
-				41EE29631D0B0F8B0009E3BA /* Assets.xcassets */,
-				41EE29651D0B0F8B0009E3BA /* LaunchScreen.storyboard */,
-				41EE29681D0B0F8B0009E3BA /* Info.plist */,
+				41EE29721D0B0FB00009E3BA /* Model */,
+				41EE29711D0B0FAA0009E3BA /* View */,
+				41EE29701D0B0FA40009E3BA /* Controller */,
+				41EE296F1D0B0F9C0009E3BA /* Resources */,
+				41EE296E1D0B0F930009E3BA /* Supporting Files */,
 			);
 			path = Nearby;
+			sourceTree = "<group>";
+		};
+		41EE296E1D0B0F930009E3BA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				41EE295C1D0B0F8B0009E3BA /* AppDelegate.swift */,
+				41EE29681D0B0F8B0009E3BA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		41EE296F1D0B0F9C0009E3BA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				41EE29631D0B0F8B0009E3BA /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		41EE29701D0B0FA40009E3BA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				41EE295E1D0B0F8B0009E3BA /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		41EE29711D0B0FAA0009E3BA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				41EE29601D0B0F8B0009E3BA /* Main.storyboard */,
+				41EE29651D0B0F8B0009E3BA /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		41EE29721D0B0FB00009E3BA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

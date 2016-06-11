@@ -7,21 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		415A7B4B1D0C2C5500BDA008 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415A7B4A1D0C2C5500BDA008 /* ListCell.swift */; };
+		415A7B4F1D0C395900BDA008 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415A7B4E1D0C395900BDA008 /* MapKit.framework */; };
 		41EE295D1D0B0F8B0009E3BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EE295C1D0B0F8B0009E3BA /* AppDelegate.swift */; };
-		41EE295F1D0B0F8B0009E3BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EE295E1D0B0F8B0009E3BA /* ViewController.swift */; };
+		41EE295F1D0B0F8B0009E3BA /* ListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EE295E1D0B0F8B0009E3BA /* ListVC.swift */; };
 		41EE29621D0B0F8B0009E3BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41EE29601D0B0F8B0009E3BA /* Main.storyboard */; };
 		41EE29641D0B0F8B0009E3BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41EE29631D0B0F8B0009E3BA /* Assets.xcassets */; };
 		41EE29671D0B0F8B0009E3BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41EE29651D0B0F8B0009E3BA /* LaunchScreen.storyboard */; };
+		41EE29751D0B11C00009E3BA /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EE29741D0B11C00009E3BA /* LocationManager.swift */; };
+		41EE29781D0B15650009E3BA /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EE29771D0B15650009E3BA /* APIClient.swift */; };
+		41EE297A1D0B509F0009E3BA /* FoursquareClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EE29791D0B509F0009E3BA /* FoursquareClient.swift */; };
+		41EE297C1D0B512B0009E3BA /* FoursquareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EE297B1D0B512B0009E3BA /* FoursquareModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		415A7B4A1D0C2C5500BDA008 /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
+		415A7B4E1D0C395900BDA008 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		41EE29591D0B0F8B0009E3BA /* Nearby.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nearby.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41EE295C1D0B0F8B0009E3BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		41EE295E1D0B0F8B0009E3BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		41EE295E1D0B0F8B0009E3BA /* ListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVC.swift; sourceTree = "<group>"; };
 		41EE29611D0B0F8B0009E3BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		41EE29631D0B0F8B0009E3BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		41EE29661D0B0F8B0009E3BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41EE29681D0B0F8B0009E3BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41EE29741D0B11C00009E3BA /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		41EE29771D0B15650009E3BA /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		41EE29791D0B509F0009E3BA /* FoursquareClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareClient.swift; sourceTree = "<group>"; };
+		41EE297B1D0B512B0009E3BA /* FoursquareModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoursquareModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				415A7B4F1D0C395900BDA008 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +51,7 @@
 		41EE29501D0B0F8B0009E3BA = {
 			isa = PBXGroup;
 			children = (
+				415A7B4E1D0C395900BDA008 /* MapKit.framework */,
 				41EE295B1D0B0F8B0009E3BA /* Nearby */,
 				41EE295A1D0B0F8B0009E3BA /* Products */,
 			);
@@ -57,6 +71,8 @@
 				41EE29721D0B0FB00009E3BA /* Model */,
 				41EE29711D0B0FAA0009E3BA /* View */,
 				41EE29701D0B0FA40009E3BA /* Controller */,
+				41EE29761D0B15510009E3BA /* Services */,
+				41EE29731D0B11A10009E3BA /* Utilities */,
 				41EE296F1D0B0F9C0009E3BA /* Resources */,
 				41EE296E1D0B0F930009E3BA /* Supporting Files */,
 			);
@@ -83,7 +99,7 @@
 		41EE29701D0B0FA40009E3BA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				41EE295E1D0B0F8B0009E3BA /* ViewController.swift */,
+				41EE295E1D0B0F8B0009E3BA /* ListVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -93,6 +109,7 @@
 			children = (
 				41EE29601D0B0F8B0009E3BA /* Main.storyboard */,
 				41EE29651D0B0F8B0009E3BA /* LaunchScreen.storyboard */,
+				415A7B4A1D0C2C5500BDA008 /* ListCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -100,8 +117,26 @@
 		41EE29721D0B0FB00009E3BA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				41EE297B1D0B512B0009E3BA /* FoursquareModel.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		41EE29731D0B11A10009E3BA /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				41EE29741D0B11C00009E3BA /* LocationManager.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		41EE29761D0B15510009E3BA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				41EE29771D0B15650009E3BA /* APIClient.swift */,
+				41EE29791D0B509F0009E3BA /* FoursquareClient.swift */,
+			);
+			name = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +171,11 @@
 				TargetAttributes = {
 					41EE29581D0B0F8B0009E3BA = {
 						CreatedOnToolsVersion = 7.3.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -175,8 +215,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41EE295F1D0B0F8B0009E3BA /* ViewController.swift in Sources */,
+				41EE297C1D0B512B0009E3BA /* FoursquareModel.swift in Sources */,
+				41EE295F1D0B0F8B0009E3BA /* ListVC.swift in Sources */,
 				41EE295D1D0B0F8B0009E3BA /* AppDelegate.swift in Sources */,
+				415A7B4B1D0C2C5500BDA008 /* ListCell.swift in Sources */,
+				41EE297A1D0B509F0009E3BA /* FoursquareClient.swift in Sources */,
+				41EE29751D0B11C00009E3BA /* LocationManager.swift in Sources */,
+				41EE29781D0B15650009E3BA /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +371,7 @@
 				41EE296D1D0B0F8B0009E3BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

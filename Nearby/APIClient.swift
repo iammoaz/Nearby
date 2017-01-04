@@ -6,7 +6,7 @@
 //  Copyright © 2016 Muhammad Moaz. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 public let APINetworkingErrorDomain = "com.moaz.Nearby.NetworkingError"
 
@@ -24,52 +24,52 @@ protocol Endpoint {
 }
 
 extension Endpoint {
-    var queryComponents: [NSURLQueryItem] {
-        var components = [NSURLQueryItem]()
+    var queryComponents: [URLQueryItem] {
+        var components = [URLQueryItem]()
         
         for (key, value) in parameters {
-            let queryItem = NSURLQueryItem(name: key, value: "\(value)")
+            let queryItem = URLQueryItem(name: key, value: "\(value)")
             components.append(queryItem)
         }
         
         return components
     }
     
-    var request: NSURLRequest {
-        let components = NSURLComponents(string: baseURL)!
+    var request: URLRequest {
+        var components = URLComponents(string: baseURL)!
         components.path = path
         components.queryItems = queryComponents
         
-        guard let url = components.URL else {
-            return NSURLRequest(URL: NSURL(string: baseURL)!)
+        guard let url = components.url else {
+            return URLRequest(url: URL(string: baseURL)!)
         }
         
-        return NSURLRequest(URL: url)
+        return URLRequest(url: url)
     }
 }
 
 typealias JSON = [String: AnyObject]
-typealias JSONCompletion = (JSON?, NSHTTPURLResponse?, NSError?) -> Void
-typealias JSONTask = NSURLSessionDataTask
+typealias JSONCompletion = (JSON?, HTTPURLResponse?, NSError?) -> Void
+typealias JSONTask = URLSessionDataTask
 
 enum APIResult<T> {
-    case Success(T)
-    case Failure(ErrorType)
+    case success(T)
+    case failure(Error)
 }
 
 protocol APIClient {
-    var configuration: NSURLSessionConfiguration { get }
-    var session: NSURLSession { get }
+    var configuration: URLSessionConfiguration { get }
+    var session: URLSession { get }
     
-    func JSONTaskWithRequest(request: NSURLRequest, completion: JSONCompletion) -> JSONTask
-    func fetch<T: JSONDecodable>(request: NSURLRequest, parse: JSON -> T?, completion: APIResult<T> -> Void)
+    func jsonTask(withRequest request: URLRequest, completion: @escaping JSONCompletion) -> JSONTask
+    func fetch<T: JSONDecodable>(_ request: URLRequest, parse: @escaping (JSON) -> T?, completion: @escaping (APIResult<T>) -> Void)
 }
 
 extension APIClient {
-    func JSONTaskWithRequest(request: NSURLRequest, completion: JSONCompletion) -> JSONTask {
-        let task = session.dataTaskWithRequest(request) { data, response, error in
+    func jsonTask(withRequest request: URLRequest, completion: @escaping JSONCompletion) -> JSONTask {
+        let task = session.dataTask(with: request, completionHandler: { data, response, error in
             
-            guard let HTTPResponse = response as? NSHTTPURLResponse else {
+            guard let HTTPResponse = response as? HTTPURLResponse else {
                 let userInfo = [NSLocalizedDescriptionKey: NSLocalizedString("Missing HTTP Response", comment: "")]
                 let error = NSError(domain: APINetworkingErrorDomain, code: MissingHTTPResponseError, userInfo: userInfo)
                 completion(nil, nil, error)
@@ -78,15 +78,15 @@ extension APIClient {
             
             if data == nil {
                 if let error = error {
-                    completion(nil, HTTPResponse, error)
+                    completion(nil, HTTPResponse, error as NSError?)
                 }
             } else {
                 switch HTTPResponse.statusCode {
                 case 200:
                     
                     do {
-                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [String: AnyObject]
-                        completion(json, HTTPResponse, error)
+                        let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: AnyObject]
+                        completion(json, HTTPResponse, error as NSError?)
                         
                     } catch let error as NSError {
                         completion(nil, HTTPResponse, error)
@@ -96,18 +96,18 @@ extension APIClient {
                     print("Recieved HTTP Response: \(HTTPResponse.statusCode), which was not handled")
                 }
             }
-        }
+        }) 
         
         return task
     }
     
-    func fetch<T>(request: NSURLRequest, parse: JSON -> T?, completion: APIResult<T> -> Void) {
-        let task = JSONTaskWithRequest(request) { json, response, error in
+    func fetch<T>(_ request: URLRequest, parse: @escaping (JSON) -> T?, completion: @escaping (APIResult<T>) -> Void) {
+        let task = jsonTask(withRequest: request) { json, response, error in
             
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 guard let json = json else {
                     if let error = error {
-                        completion(.Failure(error))
+                        completion(.failure(error))
                         
                     } else {
                         // TODO: Implement error handling
@@ -117,11 +117,11 @@ extension APIClient {
                 }
                 
                 if let resource = parse(json) {
-                    completion(.Success(resource))
+                    completion(.success(resource))
                     
                 } else {
                     let error = NSError(domain: APINetworkingErrorDomain, code: UnexpectedHTTPResponseError, userInfo: nil)
-                    completion(.Failure(error))
+                    completion(.failure(error))
                 }
             }
         }
@@ -129,13 +129,13 @@ extension APIClient {
         task.resume()
     }
     
-    func fetch<T: JSONDecodable>(endpoint: Endpoint, parse: JSON -> [T]?, completion: APIResult<[T]> -> Void) {
+    func fetch<T: JSONDecodable>(_ endpoint: Endpoint, parse: @escaping (JSON) -> [T]?, completion: @escaping (APIResult<[T]>) -> Void) {
         let request = endpoint.request
-        let task = JSONTaskWithRequest(request) { json, response, error in
-            dispatch_async(dispatch_get_main_queue()) {
+        let task = jsonTask(withRequest: request) { json, response, error in
+            DispatchQueue.main.async {
                 guard let json = json else {
                     if let error = error {
-                        completion(.Failure(error))
+                        completion(.failure(error))
                         
                     } else {
                         // TODO: Implement error handling
@@ -145,11 +145,11 @@ extension APIClient {
                 }
                 
                 if let resource = parse(json) {
-                    completion(.Success(resource))
+                    completion(.success(resource))
                     
                 } else {
                     let error = NSError(domain: APINetworkingErrorDomain, code: UnexpectedHTTPResponseError, userInfo: nil)
-                    completion(.Failure(error))
+                    completion(.failure(error))
                 }
             }
         }

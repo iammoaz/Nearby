@@ -22,7 +22,7 @@ class ListCell: UITableViewCell {
             }
             
             if let checkins = venue?.checkins.description {
-                self.checkinsLabel?.text = "\(checkins)"
+                self.checkinsLabel?.text = "No. of Checkins: \(checkins)"
             }
             
             if let category = venue?.categoryName {
@@ -36,7 +36,7 @@ class ListCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state

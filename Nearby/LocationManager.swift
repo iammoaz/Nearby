@@ -17,8 +17,8 @@ extension Coordinate {
 }
 
 final class LocationManager: NSObject, CLLocationManagerDelegate {
-    private var manager = CLLocationManager()
-    var onLocationUpdate: (Coordinate -> Void)?
+    fileprivate var manager = CLLocationManager()
+    var onLocationUpdate: ((Coordinate) -> Void)?
     
     override init() {
         super.init()
@@ -28,24 +28,24 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     func getPermission() {
-        if CLLocationManager.authorizationStatus() == .NotDetermined {
+        if CLLocationManager.authorizationStatus() == .notDetermined {
             manager.requestWhenInUseAuthorization()
         }
     }
     
     // MARK: - CLLocationManagerDelegate
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .AuthorizedWhenInUse {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
             manager.requestLocation()
         }
     }
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print(error.debugDescription)
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.first else {
             return
         }

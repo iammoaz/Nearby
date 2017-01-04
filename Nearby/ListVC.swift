@@ -12,7 +12,7 @@ import MapKit
 class ListVC: UITableViewController, MKMapViewDelegate, UISearchResultsUpdating  {
     
     @IBOutlet weak var mapView: MKMapView?
-    @IBOutlet weak var headerStackView: UIStackView?
+    @IBOutlet weak var searchBarView: UIView?
     
     fileprivate let foursquareClient = FoursquareClient(clientID: "PTOSOZFGBEDLCKOBLPFYWNWRWAFQXOZPEZ25T5EKEVGW4P20", clientSecret: "B4GNDA5DUJNQWGWIQQFPNL11GA1OV3CM43D5NAWCOZAERZ0H")
     fileprivate var coordinate: Coordinate?
@@ -31,8 +31,9 @@ class ListVC: UITableViewController, MKMapViewDelegate, UISearchResultsUpdating 
         searchController.searchResultsUpdater = self
         searchController.hidesNavigationBarDuringPresentation = true
         searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "search nearby restaurants"
         definesPresentationContext = true
-        headerStackView?.addSubview(searchController.searchBar)
+        searchBarView?.addSubview(searchController.searchBar)
         
         locationManager.getPermission()
         locationManager.onLocationUpdate = { coordinate in
